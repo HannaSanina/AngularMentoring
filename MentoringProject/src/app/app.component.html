@@ -1,0 +1,11 @@
+<div style="text-align:center">
+  <app-header>Header here</app-header>
+ </div>
+ <app-search-bar>Search course</app-search-bar>
+<ul>
+  <li *ngFor="let item of courseList">
+    <app-course info="item">Course details</app-course>
+  </li>
+</ul>
+<app-footer>Footer</app-footer>
+
