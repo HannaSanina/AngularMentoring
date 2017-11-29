@@ -1,3 +1,18 @@
-<p>
-  course works!
-</p>
+<div class="course-item" *ngFor="let item of courseList">
+  <div class="container">
+    <span class="left-container">
+      <span>
+        <b>{{item.title | uppercase}}</b>
+      </span>
+      <span>{{item.duration}} min</span>
+    </span>
+    <span class="right-container">
+      <span>{{item.date}}</span>
+      <span class="button-container">
+        <button title="Edit course" (click)="edit(item)">Edit course</button>
+        <button title="Delete course" (click)="delete(item)">Delete</button>
+      </span>
+    </span>
+  </div>
+  <div class="description">{{item.description}}</div>
+</div>

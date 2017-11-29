@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    margin-left: 5px;
+  }
+
+  .right-container{
+    display: flex;
+  }
+
+  .left-container{
+    width: 30%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    display: flex;
+  }
+
+  .course-item{
+    width: 100%;
+    border: 2px solid rgb(13, 134, 165);
+
+    padding-right: 0px;
+    margin-bottom: 10px;
+    list-style-type: none;
+  }
+
+  .description {
+    margin: 10px;
+  }

@@ -7,7 +7,8 @@ module.exports = {
     context: path.join(__dirname, 'src/app'),
 
     entry: {
-        mainPage: './app.module'
+        mainPage: './main'
+
     },
 
     output: {
@@ -16,14 +17,14 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['.js', '.ts']
+        extensions: ['.js', '.ts', 'json']
     },
 
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'MentoringTask',
-            template: './app.component.html'
+            template: './index.html'
         })
     ],
 
