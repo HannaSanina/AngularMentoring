@@ -1,1 +1,9 @@
-<app-course-item *ngFor="let course of courseList" [course]="course" (onDelete)="onDelete($event)"></app-course-item>
+<div id="search-component">
+    <span>
+        <input #searchBox id="search-box" (keyup.enter)="transform(courseList,'title', searchBox.value)" placeholder="enter search term here" />
+      <button title="Find course" (click)="search(searchBox.value)">Search</button>
+    </span>
+    <button title="Add course" (click)="add(searchBox.value)">Add course</button>
+  </div>
+<app-course-item *ngFor="let course of courseList | searchFilter: 'title' : searchBox.value | orderBy" [course]="course" (onDelete)="onDelete($event)"></app-course-item>
+<div class="nodata" *ngIf="!courseList || courseList.length == 0">No data. Be free to add a new course</div>

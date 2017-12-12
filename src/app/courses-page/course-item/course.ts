@@ -4,15 +4,17 @@ export class Course implements ICourse {
     title: string;
     duration: number;
     description: string;
-    date: Date;
+    createdDate: Date;
     id: string;
+    isTopRated: boolean;
 
     constructor(title: string, date: Date, duration: number, description: string) { 
         this.id = this.guid()
         this.title = title;
-        this.date = date;
+        this.createdDate = date;
         this.description = description;
         this.duration = duration;
+        this.isTopRated = false;
     }
 
     private guid() {
