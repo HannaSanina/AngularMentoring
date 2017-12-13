@@ -1,0 +1,25 @@
+<div class="course-item">
+  <div class="container">
+    <span class="left-container">
+      <span>
+        <b>{{course.title | uppercase}}</b>
+      </span>
+      <span>{{course.duration}} min</span>
+    </span>
+    <span class="right-container">
+      <span>{{course.date}}</span>
+      <span class="button-container">
+        <button title="Edit course" (click)="edit(course)">Edit course</button>
+        <button title="Delete course" (click)="showDialog = !showDialog">Delete</button>
+      </span>
+    </span>
+  </div>
+  <div class="description">{{course.description}}</div>
+</div>
+
+<app-dialog [(visible)]="showDialog">
+    <h1>Confirmation</h1>
+    <p>Do you really want to delete this course?</p>
+    <button (click)="delete(course)" class="btn">Yes</button>
+    <button (click)="showDialog = !showDialog" class="btn">No</button>
+  </app-dialog>
