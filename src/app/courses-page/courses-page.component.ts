@@ -35,7 +35,8 @@ export class CoursesPageComponent implements OnInit {
   }
 
   getCourses(): void {
-    this.courseService.getCourses()
+   // this.courseList = [];
+     this.courseService.getCourses()
       .subscribe(items => this.courseList = items, error => { this.error = error.message; console.log(error); });
   }
 

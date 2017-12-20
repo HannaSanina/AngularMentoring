@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './auth.guard';
 import { CoursesPageComponent } from './courses-page/courses-page.component';
-import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -14,26 +13,30 @@ import { HttpModule } from '@angular/http';
 import { HttpClient } from '@angular/common/http/src/client';
 import { HttpClientModule } from '@angular/common/http';
 import { routing } from './app-routing.module';
-//import { AppRoutingModule } from './app-routing.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
-import { FilterPipe }from './search-bar/filter.pipe';
 import { DialogComponent } from './dialog/dialog.component';
 import { CourseItemComponent } from './courses-page/course-item/course-item.component';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user-service.service';
+import { BorderHighlightDirective } from './courses-page/border-highlight.directive';
+import { DurationPipe } from './courses-page/duration.pipe';
+import { OrderByPipe } from './courses-page/order-by.pipe';
+import { SearchFilterPipe } from './courses-page/search-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesPageComponent,
-    SearchBarComponent,
     HeaderComponent,
     FooterComponent,
     LoginPageComponent,
-    FilterPipe,
     DialogComponent,
-    CourseItemComponent
+    CourseItemComponent,
+    BorderHighlightDirective,
+    DurationPipe,
+    OrderByPipe,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,

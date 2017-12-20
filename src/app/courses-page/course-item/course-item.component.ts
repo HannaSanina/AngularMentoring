@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from './course';
+import { BorderHighlightDirective } from '../border-highlight.directive'
 
 @Component({
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
-  styleUrls: ['./course-item.component.css']
+  styleUrls: ['./course-item.component.css'],
 })
 export class CourseItemComponent implements OnInit {
   @Input() course: Course;
@@ -17,8 +18,8 @@ export class CourseItemComponent implements OnInit {
   }
 
   delete(course: Course) {
-   this.onDelete.emit(course);
-   this.showDialog = false;
+    this.onDelete.emit(course);
+    this.showDialog = false;
   }
 
 }
