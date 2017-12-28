@@ -1,7 +1,10 @@
-<div *ngIf="isAuth">
+<a title="just for test puprose" (click)="isCreate=false; isAuth=false">login view</a>
+<a title="just for test puprose" (click)="isCreate=true; isAuth=false">create view</a>
+<a title="just for test puprose" (click)="isCreate=false; isAuth=true">Main page</a>
+<div *ngIf="isAuth && !isCreate">
     <app-header></app-header>
     <app-courses-page></app-courses-page>
     <app-footer></app-footer>
 </div>
-
-<app-login-page *ngIf="!isAuth" [routerLink]="['/login']"></app-login-page>
+<app-course-edit-page *ngIf="isCreate && !isAuth"></app-course-edit-page>
+<app-login-page *ngIf="!isAuth && !isCreate" [routerLink]="['/login']"></app-login-page>

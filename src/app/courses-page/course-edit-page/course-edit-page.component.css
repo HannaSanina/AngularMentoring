@@ -1,0 +1,57 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+}
+
+.container.label {
+    text-align: right;
+}
+
+label[for="title"] {
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+label[for="description"] {
+    padding-top: 3px;
+    padding-bottom: 40px;
+}
+
+label[for="date"] {
+    padding-top: 4px;
+    padding-bottom: 5px;
+}
+
+label[for="duration"] {
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+label[for="author"] {
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+input[name="date"] {
+    width: 223px;
+}
+
+textarea {
+    width: 223px;
+}
+
+.form-group {
+    margin: 5px;
+}
+
+h2 {
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    text-align: center;
+}
