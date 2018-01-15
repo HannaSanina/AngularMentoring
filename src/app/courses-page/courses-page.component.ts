@@ -7,9 +7,11 @@ import { CourseService } from '../services/course.service';
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.css']
 })
+
 export class CoursesPageComponent implements OnInit {
   courseList: Course[];
   error: any;
+  transform: any;
 
   constructor(private courseService: CourseService) { }
 
@@ -35,8 +37,7 @@ export class CoursesPageComponent implements OnInit {
   }
 
   getCourses(): void {
-   // this.courseList = [];
-     this.courseService.getCourses()
+    this.courseService.getCourses()
       .subscribe(items => this.courseList = items, error => { this.error = error.message; console.log(error); });
   }
 
@@ -48,7 +49,7 @@ export class CoursesPageComponent implements OnInit {
       });
   }
 
-  edit(course: Course): void {
+  onEdit(course: Course): void {
     if (!course) { return; }
     this.courseService.updateCourse(course as Course)
       .subscribe(item => {

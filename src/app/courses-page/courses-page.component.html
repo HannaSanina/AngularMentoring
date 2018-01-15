@@ -1,7 +1,7 @@
 <div id="search-component">
     <span>
         <input #searchBox id="search-box" (keyup.enter)="transform(courseList,'title', searchBox.value)" placeholder="enter search term here" />
-      <button title="Find course" (click)="search(searchBox.value)">Search</button>
+      <button title="Find course" (click)="transform(courseList,'title', searchBox.value)">Search</button>
     </span>
     <button title="Add course" (click)="add(searchBox.value)">Add course</button>
   </div>

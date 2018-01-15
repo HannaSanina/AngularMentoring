@@ -6,7 +6,7 @@ import { Course } from './course-item/course';
 })
 export class SearchFilterPipe implements PipeTransform {
 
-  transform(items: Course[], field: string, searchText: string): any[] {
+  public transform(items: Course[], field: string, searchText: string): any[] {
     if (!items) return [];
     if (!searchText) return items;
     searchText = searchText.toLowerCase();
