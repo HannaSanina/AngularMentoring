@@ -28,7 +28,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   login() {
-    this.loading = true;
+  /*   this.loading = true;
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(result => {
         if (result === true) {
@@ -38,6 +38,6 @@ export class LoginPageComponent implements OnInit {
           this.error = 'Username or password is incorrect';
           this.loading = false;
         }
-      });
+      }); */
   }
 }

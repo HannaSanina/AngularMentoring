@@ -23,6 +23,7 @@ import { BorderHighlightDirective } from './courses-page/border-highlight.direct
 import { DurationPipe } from './courses-page/duration.pipe';
 import { OrderByPipe } from './courses-page/order-by.pipe';
 import { SearchFilterPipe } from './courses-page/search-filter.pipe';
+import { CourseEditPageComponent } from './courses-page/course-edit-page/course-edit-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SearchFilterPipe } from './courses-page/search-filter.pipe';
     BorderHighlightDirective,
     DurationPipe,
     OrderByPipe,
-    SearchFilterPipe
+    SearchFilterPipe,
+    CourseEditPageComponent
   ],
   imports: [
     BrowserModule,

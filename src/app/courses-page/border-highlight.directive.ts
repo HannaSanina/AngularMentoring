@@ -11,16 +11,17 @@ export class BorderHighlightDirective implements OnChanges {
   @Input() createdDate: Date;
 
   constructor(private el: ElementRef) { }
-  
+
   ngOnChanges(createdDate: SimpleChanges) {
+    const millisecInDay = 1000 * 60 * 60 * 24;
     if (this.createdDate) {
-      let timeDiff = moment(this.createdDate).diff(moment(new Date())) / 1000 / 60 / 60/ 24; // diff initially is in milliseconds, convert it to days
+      // diff initially is in milliseconds, convert it to days
+      const timeDiff = moment(this.createdDate).diff(moment(new Date())) / millisecInDay;
       let colour = '';
 
       if (timeDiff >= 0) {
         colour = 'blue 2px solid';
-      }
-      else if (timeDiff < 0 && timeDiff >= -14) {
+      } else if (timeDiff < 0 && timeDiff >= -14) {
         colour = 'green 2px solid';
       }
 

@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Course } from '../courses-page/course-item/course';
 import { catchError, tap } from 'rxjs/operators';
-import 'rxjs/add/operator/map';
 import { of } from 'rxjs/observable/of';
+import * as moment from 'moment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

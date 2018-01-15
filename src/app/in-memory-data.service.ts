@@ -26,7 +26,7 @@ export class InMemoryDataService implements InMemoryDbService {
             }, {
                 "title": "Save time avoiding common mistakes using RxJS",
                 "duration": 220,
-                "createdDate": "2017-12-07",
+                "createdDate": "2017-12-17",
                 "description": "In this course we will learn to identify common mistakes with RxJS that usually make code harder to read and even introduce bugs. Most of these mistakes are related to Subject, subscribe, and subscriptions. We are going to see how to use only Observables and convenient operators made for solving those mistakes, such as fromEvent, takeUntil and switchMap. By the end of this course, you will have a more immediate intuition on what patterns are simple and safe in RxJS.",
                 "id": "3",
                 "isTopRated": true

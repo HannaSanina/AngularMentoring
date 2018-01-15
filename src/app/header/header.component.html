@@ -9,6 +9,8 @@
 
     <div class="button-container">
         <span>User Login</span>
-        <a [routerLink]="['/login']">Logout</a>
+        <!--      <a *ngIf="!(isLoggedIn | async)" [routerLink]="['/login']">Login</a> --> <!--uncomment when implement login/router logic -->
+        <a *ngIf="!(isLoggedIn | async)" (click)="authService.login()" title="call .next(true) of ReplaySubject in Auth service">Login</a>
+        <a *ngIf="(isLoggedIn | async)" (click)="authService.logout()" title="call .next(false) of ReplaySubject in Auth service">Logout</a>
     </div>
 </div>

@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  isCreate: boolean;
   isAuth: boolean; //only for test purpose, going to be removed after auth and routing implementation
   title = 'app';
 
