@@ -8,17 +8,19 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements OnInit, OnChanges {
-  isLoggedIn: Observable<boolean>;
+export class HeaderComponent implements OnInit {
+  isLoggedIn: boolean;
+  userName: string;
 
-  constructor(public authService: AuthService) {
-    this.isLoggedIn = authService.isLoggedIn();
-   }
-
-  ngOnInit() {
+  constructor(private authService: AuthService) {
   }
 
-  ngOnChanges() {
-    console.dir("on change");
+  ngOnInit() {
+    this.userName = this.authService.getUserInfo();
+    this.authService.isLoggedIn()
+      .subscribe(res => {
+        console.dir("Islogged: "+ res);
+        this.isLoggedIn = res;
+      });
   }
 }

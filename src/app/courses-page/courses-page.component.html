@@ -1,9 +1,27 @@
 <div id="search-component">
     <span>
-        <input #searchBox id="search-box" (keyup.enter)="transform(courseList,'title', searchBox.value)" placeholder="enter search term here" />
-      <button title="Find course" (click)="transform(courseList,'title', searchBox.value)">Search</button>
+        <input #searchBox id="search-box" (keyup.enter)="transform(courseList,'title', searchBox.value)" placeholder="Type to search..." />
+    <!--   <button title="Find course" (click)="transform(courseList,'title', searchBox.value)">Search</button> -->
+    <button title="Find course" (click)="search(searchBox.value, 'title')">Search</button>
     </span>
     <button title="Add course" (click)="add(searchBox.value)">Add course</button>
   </div>
 <app-course-item *ngFor="let course of courseList | searchFilter: 'title' : searchBox.value | orderBy" [course]="course" (onDelete)="onDelete($event)"></app-course-item>
 <div class="nodata" *ngIf="!courseList || courseList.length == 0">No data. Be free to add a new course</div>
+<ul style="flex-direction:row" *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+</ul>

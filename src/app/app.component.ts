@@ -11,6 +11,6 @@ export class AppComponent {
   title = 'app';
 
   constructor() {
-    this.isAuth = true;//only for test purpose, going to be removed after auth and routing implementation
+  //  this.isAuth = true;//only for test purpose, going to be removed after auth and routing implementation
   }
 }
