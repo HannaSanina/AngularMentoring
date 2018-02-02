@@ -1,0 +1,6 @@
+.authors-group {
+    height: 200px;
+    width: 220px;
+    overflow-y: scroll !important;
+    border: 1px solid gray;
+}

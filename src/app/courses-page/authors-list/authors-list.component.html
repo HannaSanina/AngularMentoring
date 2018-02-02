@@ -1,0 +1,6 @@
+<div class="authors-group">
+    <div *ngFor="let item of authors">
+        <input type="checkbox" name="author" [(ngModel)]="item.selected" (change)="writeValue(item)">
+        <label for="author">{{item.itemName}}</label>
+    </div>
+</div>

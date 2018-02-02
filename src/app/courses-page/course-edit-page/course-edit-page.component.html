@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="main-container">
     <div class="container label">
         <label for="title">Title</label>
@@ -10,38 +9,44 @@
 
     <div class="container">
         <form name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !title.valid }">
-
-                <input type="text" class="form-control" name="title" [(ngModel)]="model.title" #title="ngModel" required />
-                <span *ngIf="f.submitted && !title.valid" class="help-block">Title is required</span>
+            <div class="form-group" [ngClass]="{ 'has-error': (title.dirty || title.touched) && !title.valid }">
+                <input type="text" class="form-control" name="title" [(ngModel)]="model.title" #title="ngModel" required maxlength="50" />
+                <span *ngIf="(title.dirty || title.touched) && !title.valid" class="help-block">Title is required</span>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
-                <textarea type="text" class="form-control" name="description" [(ngModel)]="model.description" #description="ngModel" required></textarea>
-                <span *ngIf="f.submitted && !description.valid" class="help-block">description is required</span>
+            <div class="form-group" [ngClass]="{ 'has-error': (description.dirty || description.touched) && !description.valid }">
+                <textarea type="text" class="form-control" name="description" [(ngModel)]="model.description" #description="ngModel" required
+                    maxlength="500"></textarea>
+                <span *ngIf="(description.dirty || description.touched) && !description.valid" class="help-block">Description is required</span>
+                <span *ngIf="!description.touched && !description.valid" class="help-block">Description should be less than 500 symbols</span>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !date.valid }">
-
-                <input type="date" class="form-control" name="date" [(ngModel)]="model.date" #date="ngModel" required />
-                <span *ngIf="f.submitted && !date.valid" class="help-block">Date is required</span>
+            <div class="form-group" [ngClass]="{ 'has-error': (date.dirty || date.touched) && !date.valid }">
+                <input type="date" class="form-control" name="date" [(ngModel)]="model.createdDate" #date="ngModel" required />
+                <span *ngIf="!date.valid" class="help-block">Date is required</span>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !duration.valid }">
+            <div class="form-group" [ngClass]="{ 'has-error': (duration.dirty || duration.touched) && !duration.valid }">
                 <input type="number" class="form-control" name="duration" [(ngModel)]="model.duration" #duration="ngModel" required />
                 <label for="duration">{{model.duration || 0 | duration}}</label>
-                <span *ngIf="f.submitted && !duration.valid" class="help-block">Duration is required</span>
+                <span *ngIf="!duration.valid" class="help-block">Duration is required</span>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !author.valid }">
-                <textarea type="text" class="form-control" name="author" [(ngModel)]="model.author" #author="ngModel"></textarea>
+            <div style="width: 430px;" class="form-group" [ngClass]="{ 'has-error': selectedAuthors && !selectedAuthors.length }">
+                <div style="display:flex;">
+                    <app-authors-list name="authors" [(selectedItems)]="selectedAuthors" (selectedItemsChanged)="selectedItemsChanged($event)"></app-authors-list>
+                    <div class="selected"> <b>Selected Authors:</b>
+                        <li *ngFor="let author of selectedAuthors">{{author.itemName}}</li>
+                    </div>
+                </div>
+
+                <span *ngIf="selectedAuthors && !selectedAuthors.length" class="help-block">At least one author is required</span>
             </div>
             <div class="form-group">
-                <button [disabled]="loading" class="btn btn-primary" (click)="save()">Save</button>
+                <button [disabled]="loading || !f.form.valid" class="btn btn-primary" (click)="save()">Save</button>
                 <button [disabled]="loading" class="btn btn-primary" (click)="cancel()">Cancel</button>
                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                 />
             </div>
-           
+
             <div *ngIf="error" class="alert alert-danger">{{error}}</div>
         </form>
+
     </div>
 </div>
-
-<app-footer></app-footer>

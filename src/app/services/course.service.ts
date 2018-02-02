@@ -22,7 +22,7 @@ export class CourseService {
     return this.http.get(this.url).map(response => response.json());
   }
 
-  getCourse(id: string): Observable<Course> {
+  getCourse(id: number): Observable<Course> {
     return this.http.get(`api/courses/?id=${id}`).pipe(
       tap(_ => this.log(`found course with id "${id}"`)),
       catchError(this.handleError<Course>('getCourseById'))
@@ -56,11 +56,10 @@ export class CourseService {
   }
 
   deleteCourse(course: Course): Observable<any> {
-    const id = course.id;
-    const url = `${this.url}/${id}`;
+    const url = `${this.url}/${course.id}`;
 
     return this.http.delete(url).pipe(
-      tap(_ => this.log(`deleted course id=${id}`)),
+      tap(_ => this.log(`deleted course id=${course.id}`)),
       catchError(this.handleError<Course>('delete'))
     );
   }

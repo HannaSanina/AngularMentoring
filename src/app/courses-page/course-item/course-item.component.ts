@@ -13,7 +13,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CourseItemComponent implements OnInit {
   @Input() course: Course;
   @Output() onDelete = new EventEmitter<Course>();
-  @Output() onEdit = new EventEmitter<Course>();
   showDialog = false;
 
   constructor(private router: Router) { }
@@ -26,9 +25,8 @@ export class CourseItemComponent implements OnInit {
     this.showDialog = false;
   }
 
-  edit(course: Course) {
-    this.router.navigate(['/edit']);
-    this.onEdit.emit(course);
+  goToEditPage(course) {
+    this.router.navigate([`/courses/${course.id}`], { queryParams: { title: course.title } });
   }
 
 }

@@ -21,7 +21,7 @@ export class AuthService {
   login(username: string, password: string): Observable<boolean> {
    return this.http.get(`/api/users?username=${username}`)
       .map((response: Response) => {
-        const token = response.json() && response.json()[0].token;
+        const token = response.json() && response.json()[0] && response.json()[0].token;
         if (token) {
           this.token = token;
           this.isLogin.next(true);

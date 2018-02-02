@@ -4,7 +4,7 @@
     <!--   <button title="Find course" (click)="transform(courseList,'title', searchBox.value)">Search</button> -->
     <button title="Find course" (click)="search(searchBox.value, 'title')">Search</button>
     </span>
-    <button title="Add course" (click)="add(searchBox.value)">Add course</button>
+    <button title="Add course" routerLink="/courses/new" (click)="add(searchBox.value)">Add course</button>
   </div>
 <app-course-item *ngFor="let course of courseList | searchFilter: 'title' : searchBox.value | orderBy" [course]="course" (onDelete)="onDelete($event)"></app-course-item>
 <div class="nodata" *ngIf="!courseList || courseList.length == 0">No data. Be free to add a new course</div>

@@ -4,12 +4,13 @@
 <div class="container">
     <div class="left-container">
         <i class="fa fa-mortar-board" item-height="50px" item-height="50px"></i>
-        <button>Courses</button>
+        <button [routerLink]="['/courses']">Courses</button>
+        <span *ngIf="courseName">> {{courseName}}</span>
     </div>
 
     <div class="button-container">
+        <a *ngIf="!isLoggedIn" [routerLink]="['/login']">Login</a>
         <span *ngIf="isLoggedIn" >Hello, {{userName}}</span>
-        <!--      <a *ngIf="!(isLoggedIn | async)" [routerLink]="['/login']">Login</a> --> <!--uncomment when implement login/router logic -->
         <a *ngIf="isLoggedIn" (click)="authService.logout()" title="call .next(false) of ReplaySubject in Auth service">Logout</a>
     </div>
 </div>

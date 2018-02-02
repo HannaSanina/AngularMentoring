@@ -8,28 +8,96 @@ export class InMemoryDataService implements InMemoryDbService {
                 "duration": 220,
                 "createdDate": "2018-01-01",
                 "description": "The whole history of modern art",
-                "id": "4"
+                "id": 4,
+                "authors": [
+                    {
+                        "_id": "5a71995dcffc656ecbd786cb",
+                        "index": 12,
+                        "itemName": "Goldie Hubbard"
+                      },
+                      {
+                        "_id": "5a71995d9601c79b5aca84d9",
+                        "index": 13,
+                        "itemName": "Ellen Simmons"
+                      },
+                      {
+                        "_id": "5a71995dffaf07467d2588ec",
+                        "index": 14,
+                        "itemName": "Romero Rivers"
+                      }
+                ]
             },
             {
                 "title": "Introduction to AngularJS Material",
                 "duration": 120,
                 "createdDate": "2017-01-07",
                 "description": "Angular Material is an Angular-native, UI component framework from Google. It is a reference implementation of Google's Material Design and provides >30 UI components and services essential for mobile and desktop AngularJS applications.In this course, we will quickly build a real-work application Angular UI application, take a tour of Angular Material, and learn how ngMaterial can be used in your projects.",
-                "id": "1",
-                "isTopRated": true
+                "id": 1,
+                "isTopRated": true,
+                "authors": [
+                    {
+                        "_id": "5a71995dcffc656ecbd786cb",
+                        "index": 12,
+                        "itemName": "Goldie Hubbard"
+                      },
+                      {
+                        "_id": "5a71995d9601c79b5aca84d9",
+                        "index": 13,
+                        "itemName": "Ellen Simmons"
+                      },
+                      {
+                        "_id": "5a71995dffaf07467d2588ec",
+                        "index": 14,
+                        "itemName": "Romero Rivers"
+                      }
+                ]
             }, {
                 "title": "Step-by-Step Async JavaScript with RxJS",
                 "duration": 90,
                 "createdDate": "2017-01-01",
                 "description": "RxJS is tremendously helpful in working with asynchronous code, but you’ve probably been stuck trying to use concepts you already know from Promises or Callbacks and applying them directly to RxJS. These lessons walk you through the step-by-step of building a simple game application with many asynchronous pieces. Each lesson focuses on a single operator or idea of how RxJS helps simplify your code as well as making you code flexible enough to easily add more asynchronous pieces as your codebase grows.",
-                "id": "2"
+                "id": 2,
+                "authors": [
+                    {
+                        "_id": "5a71995dcffc656ecbd786cb",
+                        "index": 12,
+                        "itemName": "Goldie Hubbard"
+                      },
+                      {
+                        "_id": "5a71995d9601c79b5aca84d9",
+                        "index": 13,
+                        "itemName": "Ellen Simmons"
+                      },
+                      {
+                        "_id": "5a71995dffaf07467d2588ec",
+                        "index": 14,
+                        "itemName": "Romero Rivers"
+                      }
+                ]
             }, {
                 "title": "Save time avoiding common mistakes using RxJS",
                 "duration": 220,
                 "createdDate": "2017-12-17",
                 "description": "In this course we will learn to identify common mistakes with RxJS that usually make code harder to read and even introduce bugs. Most of these mistakes are related to Subject, subscribe, and subscriptions. We are going to see how to use only Observables and convenient operators made for solving those mistakes, such as fromEvent, takeUntil and switchMap. By the end of this course, you will have a more immediate intuition on what patterns are simple and safe in RxJS.",
-                "id": "3",
-                "isTopRated": true
+                "id": 3,
+                "isTopRated": true,
+                "authors": [
+                    {
+                        "_id": "5a71995dcffc656ecbd786cb",
+                        "index": 12,
+                        "itemName": "Goldie Hubbard"
+                      },
+                      {
+                        "_id": "5a71995d9601c79b5aca84d9",
+                        "index": 13,
+                        "itemName": "Ellen Simmons"
+                      },
+                      {
+                        "_id": "5a71995dffaf07467d2588ec",
+                        "index": 14,
+                        "itemName": "Romero Rivers"
+                      }
+                ]
             },
             {
                 "id": 4480,
@@ -39,20 +107,20 @@ export class InMemoryDataService implements InMemoryDbService {
                 "createdDate": "2016-10-27T23:26:43+00:00",
                 "authors": [
                     {
-                        "id": 4713,
-                        "firstName": "Gordon",
-                        "lastName": "Marquez"
-                    },
-                    {
-                        "id": 6540,
-                        "firstName": "Ingram",
-                        "lastName": "Heath"
-                    },
-                    {
-                        "id": 3004,
-                        "firstName": "Avila",
-                        "lastName": "Rivera"
-                    }
+                        "_id": "5a71995dcffc656ecbd786cb",
+                        "index": 12,
+                        "itemName": "Goldie Hubbard"
+                      },
+                      {
+                        "_id": "5a71995d9601c79b5aca84d9",
+                        "index": 13,
+                        "itemName": "Ellen Simmons"
+                      },
+                      {
+                        "_id": "5a71995dffaf07467d2588ec",
+                        "index": 14,
+                        "itemName": "Romero Rivers"
+                      }
                 ],
                 "duration": 293
             },
@@ -64,25 +132,20 @@ export class InMemoryDataService implements InMemoryDbService {
                 "createdDate": "2016-06-14T16:29:15+00:00",
                 "authors": [
                     {
-                        "id": 1834,
-                        "firstName": "Desiree",
-                        "lastName": "Moran"
-                    },
-                    {
-                        "id": 9942,
-                        "firstName": "Bertie",
-                        "lastName": "Rollins"
-                    },
-                    {
-                        "id": 2256,
-                        "firstName": "Patel",
-                        "lastName": "Good"
-                    },
-                    {
-                        "id": 4222,
-                        "firstName": "Nola",
-                        "lastName": "Vaughn"
-                    }
+                        "_id": "5a71995dcffc656ecbd786cb",
+                        "index": 12,
+                        "itemName": "Goldie Hubbard"
+                      },
+                      {
+                        "_id": "5a71995d9601c79b5aca84d9",
+                        "index": 13,
+                        "itemName": "Ellen Simmons"
+                      },
+                      {
+                        "_id": "5a71995dffaf07467d2588ec",
+                        "index": 14,
+                        "itemName": "Romero Rivers"
+                      }
                 ],
                 "duration": 178
             },
@@ -749,15 +812,20 @@ export class InMemoryDataService implements InMemoryDbService {
                 "createdDate": "2016-09-26T02:49:43+00:00",
                 "authors": [
                     {
-                        "id": 993,
-                        "firstName": "Roth",
-                        "lastName": "Camacho"
-                    },
-                    {
-                        "id": 3558,
-                        "firstName": "Teresa",
-                        "lastName": "Weeks"
-                    }
+                        "_id": "5a71995dcffc656ecbd786cb",
+                        "index": 12,
+                        "itemName": "Goldie Hubbard"
+                      },
+                      {
+                        "_id": "5a71995d9601c79b5aca84d9",
+                        "index": 13,
+                        "itemName": "Ellen Simmons"
+                      },
+                      {
+                        "_id": "5a71995dffaf07467d2588ec",
+                        "index": 14,
+                        "itemName": "Romero Rivers"
+                      }
                 ],
                 "duration": 277
             }
@@ -784,7 +852,85 @@ export class InMemoryDataService implements InMemoryDbService {
             }
         ];
 
+        const authors = [
+            {
+              "_id": "5a71995de9a39686e1e232b1",
+              "index": 0,
+              "itemName": "Zelma Kelley"
+            },
+            {
+              "_id": "5a71995de508646c8cadf19f",
+              "index": 1,
+              "itemName": "Darcy Copeland"
+            },
+            {
+              "_id": "5a71995db351c839a8cfa0dc",
+              "index": 2,
+              "itemName": "Vivian Cantu"
+            },
+            {
+              "_id": "5a71995d6ac56e3077756f59",
+              "index": 3,
+              "itemName": "Ruth Leon"
+            },
+            {
+              "_id": "5a71995d26c6b0871a3f9ed0",
+              "index": 4,
+              "itemName": "Traci Tucker"
+            },
+            {
+              "_id": "5a71995df2921640fbc2c4cc",
+              "index": 5,
+              "itemName": "Underwood Fox"
+            },
+            {
+              "_id": "5a71995da472a47518f3fd42",
+              "index": 6,
+              "itemName": "Harrell Henry"
+            },
+            {
+              "_id": "5a71995dbf3b8c3d4860b0f5",
+              "index": 7,
+              "itemName": "Luella Pollard"
+            },
+            {
+              "_id": "5a71995d533ea48cf9c237e2",
+              "index": 8,
+              "itemName": "Frankie Frost"
+            },
+            {
+              "_id": "5a71995da3c57df1a2c4ae42",
+              "index": 9,
+              "itemName": "Queen Mccarty"
+            },
+            {
+              "_id": "5a71995d74f5c67124f0ddf2",
+              "index": 10,
+              "itemName": "Cassie Robbins"
+            },
+            {
+              "_id": "5a71995d3691df72e45cc711",
+              "index": 11,
+              "itemName": "Mcknight Sharpe"
+            },
+            {
+              "_id": "5a71995dcffc656ecbd786cb",
+              "index": 12,
+              "itemName": "Goldie Hubbard"
+            },
+            {
+              "_id": "5a71995d9601c79b5aca84d9",
+              "index": 13,
+              "itemName": "Ellen Simmons"
+            },
+            {
+              "_id": "5a71995dffaf07467d2588ec",
+              "index": 14,
+              "itemName": "Romero Rivers"
+            }
+          ];
 
-        return { courses, users };
+
+        return { courses, users, authors };
     }
 }

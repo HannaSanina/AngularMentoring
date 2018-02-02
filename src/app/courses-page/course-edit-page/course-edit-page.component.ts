@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { CourseService } from '../../services/course.service';
+import { ActivatedRoute, Resolve, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { Course } from '../course-item/course';
+
+import { FormArray, FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
+import * as _ from 'underscore';
+import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-course-edit-page',
@@ -7,20 +15,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseEditPageComponent implements OnInit {
   model: any = {};
+  selectedAuthors: Array<any> = [];
   loading = false;
   error = '';
+  editForm: FormGroup;
+  checkboxValue: false;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private courseService: CourseService,
+    private location: Location,
+    private router: Router,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.getCourse();
   }
 
+  getCourse() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    return this.courseService.getCourse(id)
+      .subscribe(res => {
+        this.model = res[0];
+        this.selectedAuthors = res[0].authors;
+      });
+  }
+
+  selectedItemsChanged(value) {
+    this.selectedAuthors = value;
+  }
+
+
   save() {
-    console.dir("save invoked")
+    this.model.authors = this.selectedAuthors;
+    this.courseService.updateCourse(this.model);
+    this.router.navigate(['/']);
   }
 
   cancel() {
-    console.dir("cancel invoked")
+    this.location.back();
   }
 
 }

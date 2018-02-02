@@ -7,7 +7,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 350px;
+    height: 650px;
 }
 
 .container.label {
@@ -21,7 +21,7 @@ label[for="title"] {
 
 label[for="description"] {
     padding-top: 3px;
-    padding-bottom: 40px;
+    padding-bottom: 210px;
 }
 
 label[for="date"] {
@@ -45,6 +45,7 @@ input[name="date"] {
 
 textarea {
     width: 223px;
+    height: 220px;
 }
 
 .form-group {
@@ -54,4 +55,18 @@ textarea {
 h2 {
     font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     text-align: center;
+}
+
+.has-error {
+    border: dotted 1px red;
+    padding: 4px;
+}
+
+.help-block {
+    color: red;
+    font-size: small;
+}
+
+.selected{
+    margin-left:5px;
 }
