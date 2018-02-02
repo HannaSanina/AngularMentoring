@@ -23,7 +23,9 @@ export class CourseService {
   }
 
   getCourse(id: number): Observable<Course> {
-    return this.http.get(`api/courses/?id=${id}`).pipe(
+    return this.http.get(`api/courses/?id=${id}`)
+    .map(response => response.json())
+    .pipe(
       tap(_ => this.log(`found course with id "${id}"`)),
       catchError(this.handleError<Course>('getCourseById'))
     );
