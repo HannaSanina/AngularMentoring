@@ -24,8 +24,8 @@ export const VALIDATOR: any = {
   providers: [VALUE_ACCESSOR, VALIDATOR]
 })
 export class AuthorsListComponent implements OnInit, ControlValueAccessor, Validator {
-  @Input() selectedItems: Array<any> = [];
-  @Output() selectedItemsChanged = new EventEmitter<Array<Object>>();
+  selectedItems: Array<any> = [];
+  /*  @Output() selectedItemsChanged = new EventEmitter<Array<Object>>(); */
   authors: Array<any> = [];
   onChange: boolean;
   onTouched: boolean;
@@ -33,7 +33,6 @@ export class AuthorsListComponent implements OnInit, ControlValueAccessor, Valid
   constructor(private authorService: AuthorService) { }
 
   ngOnInit() {
-    this.getAuthours();
   }
 
   getAuthours() {
@@ -56,13 +55,20 @@ export class AuthorsListComponent implements OnInit, ControlValueAccessor, Valid
     };
   }
 
-  writeValue(item) {
-    if (item.selected) {
-      this.selectedItems.push(item);
-    } else {
-      this.selectedItems = _.reject(this.selectedItems, author => author.itemName === item.itemName);
+  writeValue(value) {
+    if (value) {
+      if (_.isArray(value)) {
+        this.selectedItems = value;
+        this.getAuthours();
+      } else {
+        if (value.selected) {
+          this.selectedItems.push(value);
+        } else {
+          this.selectedItems = _.reject(this.selectedItems, author => author.itemName === value.itemName);
+        }
+      }
     }
-    this.selectedItemsChanged.emit(this.selectedItems);
+
     this.authorError = this.selectedItems.length > 0 ? false : true;
   }
 

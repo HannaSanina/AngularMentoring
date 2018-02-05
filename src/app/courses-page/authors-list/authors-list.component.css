@@ -4,3 +4,12 @@
     overflow-y: scroll !important;
     border: 1px solid gray;
 }
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.selected{
+    margin-left:5px;
+}

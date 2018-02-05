@@ -29,13 +29,7 @@
                 <span *ngIf="!duration.valid" class="help-block">Duration is required</span>
             </div>
             <div style="width: 430px;" class="form-group" [ngClass]="{ 'has-error': selectedAuthors && !selectedAuthors.length }">
-                <div style="display:flex;">
-                    <app-authors-list name="authors" [(selectedItems)]="selectedAuthors" (selectedItemsChanged)="selectedItemsChanged($event)"></app-authors-list>
-                    <div class="selected"> <b>Selected Authors:</b>
-                        <li *ngFor="let author of selectedAuthors">{{author.itemName}}</li>
-                    </div>
-                </div>
-
+                <app-authors-list name="authors" [(ngModel)]="model.authors"></app-authors-list>
                 <span *ngIf="selectedAuthors && !selectedAuthors.length" class="help-block">At least one author is required</span>
             </div>
             <div class="form-group">

@@ -15,7 +15,6 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class CourseEditPageComponent implements OnInit {
   model: any = {};
-  selectedAuthors: Array<any> = [];
   loading = false;
   error = '';
   editForm: FormGroup;
@@ -36,17 +35,10 @@ export class CourseEditPageComponent implements OnInit {
     return this.courseService.getCourse(id)
       .subscribe(res => {
         this.model = res[0];
-        this.selectedAuthors = res[0].authors;
       });
   }
 
-  selectedItemsChanged(value) {
-    this.selectedAuthors = value;
-  }
-
-
   save() {
-    this.model.authors = this.selectedAuthors;
     this.courseService.updateCourse(this.model);
     this.router.navigate(['/']);
   }
