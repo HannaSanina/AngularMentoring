@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+import { ExtendedHttp } from './extended-http.service';
 
 import { AuthService } from './auth.service';
 import { User } from './user';
@@ -9,14 +10,12 @@ import { User } from './user';
 @Injectable()
 export class UserService {
   constructor(
-    private http: Http,
+    private http: ExtendedHttp,
     private authenticationService: AuthService) {
   }
 
   getUsers(): Observable<User[]> {
-    let headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticationService.token });
-    let options = new RequestOptions({ headers: headers });
-    return this.http.get('/api/users', options)
+    return this.http.get('/api/users')
       .map((response: Response) => response.json());
   }
 

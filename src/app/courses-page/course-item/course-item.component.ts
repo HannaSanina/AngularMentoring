@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from './course';
 import { BorderHighlightDirective } from '../border-highlight.directive';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-course-item',
@@ -15,7 +16,7 @@ export class CourseItemComponent implements OnInit {
   @Output() onEdit = new EventEmitter<Course>();
   showDialog = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,6 +27,7 @@ export class CourseItemComponent implements OnInit {
   }
 
   edit(course: Course) {
+    this.router.navigate(['/edit']);
     this.onEdit.emit(course);
   }
 
