@@ -7,10 +7,6 @@ import { of } from 'rxjs/observable/of';
 import * as moment from 'moment';
 import { ExtendedHttp } from './extended-http.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable()
 export class CourseService {
   private url = 'api/courses';
@@ -19,12 +15,11 @@ export class CourseService {
   }
 
   getCourses(): Observable<Course[]> {
-    return this.http.get(this.url).map(response => response.json());
+    return this.http.get(this.url);
   }
 
   getCourse(id: number): Observable<Course> {
     return this.http.get(`api/courses/?id=${id}`)
-    .map(response => response.json())
     .pipe(
       tap(_ => this.log(`found course with id "${id}"`)),
       catchError(this.handleError<Course>('getCourseById'))
@@ -36,7 +31,6 @@ export class CourseService {
       return of([]);
     }
     return this.http.get(`api/courses/?${field}=${term}`)
-    .map(response => response.json())
     .pipe(
       tap(_ => this.log(`found matching "${term}"`)),
       catchError(this.handleError<Course[]>('search', []))

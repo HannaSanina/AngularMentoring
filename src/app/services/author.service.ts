@@ -12,8 +12,7 @@ export class AuthorService {
   }
 
   getAuthors(): Observable<any> {
-    return this.http.get('/api/authors')
-      .map((response: Response) => response.json());
+    return this.http.get('/api/authors');
   }
 
 }

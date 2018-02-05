@@ -12,6 +12,7 @@ import { CourseService } from './services/course.service';
 import { AuthorService } from './services/author.service';
 import { HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 import { HttpClient } from '@angular/common/http/src/client';
+import { HttpHandler } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -54,9 +55,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpModule,
     AngularMultiSelectModule,
     InMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
@@ -67,10 +68,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     {
       provide: ExtendedHttp,
       useFactory:
-        (backend: XHRBackend, defaultOptions: RequestOptions) => {
-          return new ExtendedHttp(backend, defaultOptions);
+        (handler:  HttpHandler) => {
+          return new ExtendedHttp(handler);
         },
-      deps: [XHRBackend, RequestOptions]
+      deps: [HttpHandler]
     }],
   bootstrap: [AppComponent]
 })
