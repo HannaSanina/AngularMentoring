@@ -5,6 +5,10 @@ import { PagerService } from '../services/pager.service';
 import { Observable } from 'rxjs/Observable';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as moment from 'moment';
+import { Store, select } from '@ngrx/store';
+import { GET_ALL, GET_BY_ID, SEARCH } from '../services/reducers/courses.reducer';
+import { reducers } from '../services/reducers';
+
 import { Subscription } from 'rxjs/Subscription';
 import { catchError, tap, map } from 'rxjs/operators';
 import 'rxjs/add/operator/filter';
@@ -19,15 +23,23 @@ import 'rxjs/add/observable/from';
 export class CoursesPageComponent implements OnInit, OnDestroy {
   courseList: Course[];
   allItems: Course[];
+  coursesFromStore: Observable<Course[]>;
   pager: any = {};
   error: any;
   transform: any;
   sub: Subscription;
 
-  constructor(private courseService: CourseService, private pagerService: PagerService) { }
+  constructor(private courseService: CourseService, private pagerService: PagerService, private store: Store<Course[]>) {
+    this.coursesFromStore = store.pipe(select('courses'));
+  }
 
   ngOnInit() {
-    this.getCourses();
+    this.store.dispatch({ type: GET_ALL });
+    //this.getCourses();
+    this.sub = this.coursesFromStore.subscribe(items => {
+      this.allItems = items || [];
+      this.setPage(1);
+    });
   }
 
   ngOnDestroy() {
@@ -35,21 +47,16 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   }
 
   getCourses(): void {
-    const millisecInDay = 1000 * 60 * 60 * 24;
-
-    this.sub = this.courseService.getCourses()
-      //   .map(v => v = v.filter(item => moment(item.createdDate).diff(moment(new Date())) > -144 * 1000 * 60 * 60 * 24))
-      .subscribe(items => {
-        this.allItems = items;
-        this.setPage(1);
-      }, error => {
-        this.error = error.message; console.log(error);
-      });
+    /*     this.sub = this.courseService.getCourses()
+          .subscribe(data => {
+            this.allItems = data;
+            this.setPage(1);
+          }); */
   }
 
   search(searchTerm: string, field: string): void {
+    this.store.dispatch(new reducers.courses.GetCourseByNameAction(searchTerm));
     this.sub = this.courseService.searchCourse(searchTerm, field)
-      //   .map(v => v = v.filter(item => moment(item.createdDate).diff(moment(new Date())) > -144 * 1000 * 60 * 60 * 24))
       .subscribe(items => {
         this.courseList = items;
       }, error => {

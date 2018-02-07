@@ -33,6 +33,10 @@ import { NotFoundComponent } from './not-found.component';
 import { AuthorsListComponent } from './courses-page/authors-list/authors-list.component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { CourseEffects } from './services/reducers/effects';
+import { reducers } from './services/reducers';
 
 @NgModule({
   declarations: [
@@ -62,13 +66,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     InMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([CourseEffects]),
     AppRoutingModule
   ],
   providers: [CourseService, AuthorService, AuthGuard, AuthService, UserService, PagerService,
     {
       provide: ExtendedHttp,
       useFactory:
-        (handler:  HttpHandler) => {
+        (handler: HttpHandler) => {
           return new ExtendedHttp(handler);
         },
       deps: [HttpHandler]
