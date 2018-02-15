@@ -14,8 +14,6 @@ export class LoginPageComponent implements OnInit {
   model: any = {};
   loading = false;
   error = '';
-  returnUrl: string;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +22,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.authenticationService.isLoggedIn()
       .subscribe(res => {
         if (res === false) {
@@ -38,7 +35,7 @@ export class LoginPageComponent implements OnInit {
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(result => {
         if (result === true) {
-          this.router.navigate(['/main']);
+          this.router.navigate(['/']);
         } else {
           this.error = 'Username or password is incorrect';
           this.loading = false;

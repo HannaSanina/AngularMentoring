@@ -3,43 +3,33 @@ import { CourseService } from '../../services/course.service';
 import { ActivatedRoute, Resolve, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Course } from '../course-item/course';
+import { AuthorService } from '../../services/author.service';
 
-import { FormArray, FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
-import * as _ from 'underscore';
-import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-course-edit-page',
   templateUrl: './course-edit-page.component.html',
   styleUrls: ['./course-edit-page.component.css']
 })
-export class CourseEditPageComponent implements OnInit {
+export class CourseNewComponent implements OnInit {
   model: any = {};
   loading = false;
   error = '';
-  editForm: FormGroup;
-  checkboxValue: false;
+  selectedAuthors: Array<any> = [];
 
-  constructor(private route: ActivatedRoute,
+  constructor(private authorService: AuthorService,
+    private route: ActivatedRoute,
     private courseService: CourseService,
     private location: Location,
-    private router: Router,
-    private fb: FormBuilder) { }
+    private router: Router) { }
 
   ngOnInit() {
-    this.getCourse();
-  }
-
-  getCourse() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    return this.courseService.getCourse(id)
-      .subscribe(res => {
-        this.model = res[0];
-      });
+    //  this.getAuthours();
   }
 
   save() {
-    this.courseService.updateCourse(this.model);
+    this.model.authors = this.selectedAuthors;
+    this.courseService.addCourse(this.model);
     this.router.navigate(['/']);
   }
 

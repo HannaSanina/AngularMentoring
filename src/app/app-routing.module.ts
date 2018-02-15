@@ -1,17 +1,29 @@
-import { Routes, RouterModule } from '@angular/router';
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthGuard } from './auth.guard';
-import { MainComponent } from './main/main.component';
 import { CourseEditPageComponent } from './courses-page/course-edit-page/course-edit-page.component';
+import { CoursesPageComponent } from './courses-page/courses-page.component';
+import { NotFoundComponent } from './not-found.component';
+import { CourseNewComponent } from './courses-page/course-edit-page/course-new.component';
 
-const appRoutes: Routes = [
-    { path: 'login', component: LoginPageComponent },
-    { path: 'main', component: MainComponent, canActivate: [AuthGuard] },
-    { path: 'edit', component: CourseEditPageComponent, canActivate: [AuthGuard] },
-
-    // otherwise redirect to home
-    { path: '**', redirectTo: 'login' }
+const routes: Routes = [
+  { path: 'courses/new', component: CourseNewComponent, canActivate: [AuthGuard] },
+  { path: 'courses/:id', component: CourseEditPageComponent, canActivate: [AuthGuard] },
+  { path: 'courses', component: CoursesPageComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginPageComponent },
+  { path: '', redirectTo: 'courses', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent }
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes, { enableTracing: true }),
+  ],
+  declarations: [],
+  exports: [RouterModule]
+})
+
+export class AppRoutingModule { }

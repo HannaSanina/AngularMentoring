@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core';
-import {
-    Http,
-    ConnectionBackend,
-    RequestOptions,
-    RequestOptionsArgs,
-    Response,
-    Headers,
-    Request
-} from '@angular/http';
+import { Response, Request } from '@angular/http';
+import { HttpClient, HttpHandler, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class ExtendedHttp extends Http {
-
-    constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
-        super(backend, defaultOptions);
+export class ExtendedHttp extends HttpClient {
+    constructor(handler: HttpHandler) {
+        super(handler);
     }
 
     /**
@@ -24,11 +16,11 @@ export class ExtendedHttp extends Http {
      * @param options
      * @returns {Observable<>}
      */
-    get(url: string, options?: RequestOptionsArgs): Observable<any> {
+    get(url: string, options?: any): Observable<any> {
         this.beforeRequest();
         return super.get(url, this.requestOptions(options))
             .catch(this.onCatch)
-            .do((res: Response) => {
+            .do((res: HttpResponse<any>) => {
                 this.onSuccess(res);
             }, (error: any) => {
                 this.onError(error);
@@ -44,11 +36,11 @@ export class ExtendedHttp extends Http {
     * @param options
     * @returns {Observable<>}
     */
-    post(url: string, body?: any, options?: RequestOptionsArgs) {
+    post(url: string, body?: any, options?: any) {
         this.beforeRequest();
         return super.post(url, body, this.requestOptions(options))
             .catch(this.onCatch)
-            .do((res: Response) => {
+            .do((res: HttpResponse<any>) => {
                 this.onSuccess(res);
             }, (error: any) => {
                 this.onError(error);
@@ -64,11 +56,11 @@ export class ExtendedHttp extends Http {
     * @param options
     * @returns {Observable<>}
     */
-    put(url: string, body?: any, options?: RequestOptionsArgs) {
+    put(url: string, body?: any, options?: any) {
         this.beforeRequest();
         return super.put(url, body, this.requestOptions(options))
             .catch(this.onCatch)
-            .do((res: Response) => {
+            .do((res: HttpResponse<any>) => {
                 this.onSuccess(res);
             }, (error: any) => {
                 this.onError(error);
@@ -84,11 +76,11 @@ export class ExtendedHttp extends Http {
     * @param options
     * @returns {Observable<>}
     */
-    delete(url: string, options?: RequestOptionsArgs) {
+    delete(url: string, options?: any) {
         this.beforeRequest();
         return super.delete(url, this.requestOptions(options))
             .catch(this.onCatch)
-            .do((res: Response) => {
+            .do((res: HttpResponse<any>) => {
                 this.onSuccess(res);
             }, (error: any) => {
                 this.onError(error);
@@ -100,21 +92,25 @@ export class ExtendedHttp extends Http {
 
     /**
      * @param options
-     * @returns {RequestOptionsArgs}
+     * @returns {{ headers: HttpHeaders }}
      */
-    private requestOptions(options?: RequestOptionsArgs): RequestOptionsArgs {
+    private requestOptions(options: { headers?: HttpHeaders }): Object {
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (options == null) {
-            options = new RequestOptions();
+            options = {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json'
+                })
+            };
+            if (options.headers == null && currentUser) {
+                options.headers = new HttpHeaders({
+                    'Authorization': `Basic ${currentUser.token}`,
+                    'X-Auth-Token': localStorage.getItem('access_token'),
+                    'Content-Type': 'application/json'
+                });
+            }
+            return options;
         }
-        if (options.headers == null && currentUser) {
-            options.headers = new Headers({
-                'Authorization': `Basic ${currentUser.token}`,
-                'X-Auth-Token': localStorage.getItem('access_token'),
-                'Content-Type': 'application/json'
-            });
-        }
-        return options;
     }
 
     /**
@@ -145,7 +141,7 @@ export class ExtendedHttp extends Http {
      * onSuccess
      * @param res
      */
-    private onSuccess(res: Response): void {
+    private onSuccess(res: HttpResponse<any>): void {
         console.log(res);
     }
 
