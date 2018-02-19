@@ -25,7 +25,6 @@ export const VALIDATOR: any = {
 })
 export class AuthorsListComponent implements OnInit, ControlValueAccessor, Validator {
   selectedItems: Array<any> = [];
-  /*  @Output() selectedItemsChanged = new EventEmitter<Array<Object>>(); */
   authors: Array<any> = [];
   onChange: boolean;
   onTouched: boolean;
@@ -33,6 +32,7 @@ export class AuthorsListComponent implements OnInit, ControlValueAccessor, Valid
   constructor(private authorService: AuthorService) { }
 
   ngOnInit() {
+    this.getAuthours();
   }
 
   getAuthours() {
@@ -55,7 +55,7 @@ export class AuthorsListComponent implements OnInit, ControlValueAccessor, Valid
     };
   }
 
-  writeValue(value) {
+  public writeValue(value) {
     if (value) {
       if (_.isArray(value)) {
         this.selectedItems = value;

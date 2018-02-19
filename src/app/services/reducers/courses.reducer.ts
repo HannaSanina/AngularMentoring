@@ -33,8 +33,7 @@ export const coursesReducer: ActionReducer<any> = (courses: Array<Course> = [], 
         case GET_ALL:
             return courses;
         case GET_BY_ID:
-            let course = _.find(courses, item => item.title === action.title);
-            return course;
+            return _.filter(courses, item => item.title.toLowerCase().startsWith(action.title.toLowerCase()));
         default:
             return courses;
     }

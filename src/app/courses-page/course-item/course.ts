@@ -8,8 +8,8 @@ export class Course implements ICourse {
     id: string;
     isTopRated: boolean;
 
-    constructor(title: string, date: Date, duration: number, description: string) { 
-        this.id = this.guid()
+    constructor(title: string, date: Date, duration: number, description: string) {
+        this.id = this.guid();
         this.title = title;
         this.createdDate = date;
         this.description = description;

@@ -37,6 +37,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { CourseEffects } from './services/reducers/effects';
 import { reducers } from './services/reducers';
+import { coursesReducer } from './services/reducers/courses.reducer';
+import { authReducer } from './services/reducers/auth.reducer';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,8 @@ import { reducers } from './services/reducers';
     InMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
-    StoreModule.forRoot(reducers),
+ //   StoreModule.forRoot(reducers),
+    StoreModule.forRoot({ courses: coursesReducer, auth: authReducer }),
     EffectsModule.forRoot([CourseEffects]),
     AppRoutingModule
   ],

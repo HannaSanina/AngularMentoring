@@ -3,7 +3,7 @@ import { Course } from './course-item/course';
 import { CourseService } from '../services/course.service';
 import { PagerService } from '../services/pager.service';
 import { Observable } from 'rxjs/Observable';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnDestroy, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as moment from 'moment';
 import { Store, select } from '@ngrx/store';
 import { GET_ALL, GET_BY_ID, SEARCH } from '../services/reducers/courses.reducer';
@@ -29,17 +29,13 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   transform: any;
   sub: Subscription;
 
-  constructor(private courseService: CourseService, private pagerService: PagerService, private store: Store<Course[]>) {
-    this.coursesFromStore = store.pipe(select('courses'));
+  constructor(private courseService: CourseService, private pagerService: PagerService, private store: Store<any>) {
+    this.store.dispatch({ type: GET_ALL });
+    this.coursesFromStore = this.store.pipe(select('courses'));
   }
 
   ngOnInit() {
-    this.store.dispatch({ type: GET_ALL });
-    //this.getCourses();
-    this.sub = this.coursesFromStore.subscribe(items => {
-      this.allItems = items || [];
-      this.setPage(1);
-    });
+    this.getCourses();
   }
 
   ngOnDestroy() {
@@ -47,11 +43,11 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   }
 
   getCourses(): void {
-    /*     this.sub = this.courseService.getCourses()
-          .subscribe(data => {
-            this.allItems = data;
-            this.setPage(1);
-          }); */
+    this.sub = this.courseService.getCourses()
+      .subscribe(data => {
+        this.allItems = data;
+        this.setPage(1);
+      });
   }
 
   search(searchTerm: string, field: string): void {

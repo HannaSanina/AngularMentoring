@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../../services/course.service';
-import { ActivatedRoute, Resolve, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Course } from '../course-item/course';
 
-import { FormArray, FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 import * as _ from 'underscore';
 import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
@@ -16,24 +15,22 @@ import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 export class CourseEditPageComponent implements OnInit {
   model: any = {};
   loading = false;
-  error = '';
-  editForm: FormGroup;
-  checkboxValue: false;
 
   constructor(private route: ActivatedRoute,
-    private courseService: CourseService,
+    public courseService: CourseService,
     private location: Location,
-    private router: Router,
-    private fb: FormBuilder) { }
+    private router: Router) { }
 
   ngOnInit() {
-    this.getCourse();
+    this.route.paramMap.subscribe(
+      p =>
+        this.getCourse(p.has('id') && p.get('id')));
+   // this.getCourse(+this.route.snapshot.paramMap.get('id'));
   }
 
-  getCourse() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    return this.courseService.getCourse(id)
-      .subscribe(res => {
+  getCourse(id) {
+    return this.courseService.getCourse(6521)
+       .subscribe(res => {
         this.model = res[0];
       });
   }
